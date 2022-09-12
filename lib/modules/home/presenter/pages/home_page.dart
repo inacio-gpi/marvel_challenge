@@ -1,22 +1,17 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/constants/app_routes.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/character_card_widget.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   final HomeController controller;
   const HomePage({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +23,15 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Obx(
                   () => ListView.builder(
-                    itemCount: widget.controller.characters.length,
+                    itemCount: controller.characters.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final character = widget.controller.characters[index];
-                      return CharacterCardWidget(character: character);
+                      final character = controller.characters[index];
+                      return CharacterCardWidget(
+                        character: character,
+                        onTap: () {
+                          Get.toNamed(Routes.details, arguments: character);
+                        },
+                      );
                     },
                   ),
                 ),
