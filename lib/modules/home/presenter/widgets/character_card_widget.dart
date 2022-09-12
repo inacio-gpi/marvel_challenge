@@ -17,24 +17,46 @@ class CharacterCardWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.symmetric(
           horizontal: 16,
-          vertical: 8,
+          vertical: 16,
         ),
-        child: Row(
-          children: [
-            SizedBox(
-              height: 45,
-              width: 45,
-              child: Hero(
-                tag: 'character_${character.id}',
-                child: Image.network(character.imageUrl),
+        child: Material(
+          elevation: 10,
+          child: Column(
+            children: [
+              Expanded(
+                flex: 8,
+                child: Hero(
+                  tag: 'character_${character.id}',
+                  child: Image.network(
+                    alignment: Alignment.center,
+                    height: double.infinity,
+                    width: double.infinity,
+                    character.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
-            const SizedBox(width: 12),
-            Text(character.name),
-          ],
+              Expanded(
+                flex: 2,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  alignment: Alignment.center,
+                  color: const Color(0xFFF0141E),
+                  child: Text(
+                    character.name,
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

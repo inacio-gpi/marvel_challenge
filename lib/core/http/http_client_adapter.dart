@@ -16,12 +16,13 @@ class HttpClient implements IHttpClient {
     String ts = DateTime.now().millisecondsSinceEpoch.toString();
     const String apiKey = String.fromEnvironment('API_KEY');
     const String privateApiKey = String.fromEnvironment('PRIVATE_API_KEY');
-    final queryParams = params?.cast<String, String>() ?? {}
+    final queryParams = params?.cast<String, dynamic>() ?? {}
       ..addAll({
         'ts': ts,
         'apikey': apiKey,
         'hash': generateMd5(ts + privateApiKey + apiKey),
       });
+    queryParams.removeWhere((key, value) => value == null);
 
     return queryParams;
   }
