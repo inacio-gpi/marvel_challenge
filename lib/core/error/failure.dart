@@ -28,3 +28,15 @@ class DatasourceException extends Failure {
           label: label,
         );
 }
+
+class NetworkException extends Failure {
+  NetworkException({
+    required String message,
+    StackTrace? stackTrace,
+    String? label,
+  }) : super(
+          message: message,
+          stackTrace: stackTrace,
+          label: label,
+        );
+}

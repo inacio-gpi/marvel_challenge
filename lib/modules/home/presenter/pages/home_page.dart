@@ -20,6 +20,12 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              TextButton(
+                onPressed: () {
+                  controller.loadMoreCharacters();
+                },
+                child: const Text('press here'),
+              ),
               Expanded(
                 child: Obx(
                   () => ListView.builder(
