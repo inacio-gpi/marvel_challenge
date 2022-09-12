@@ -21,8 +21,7 @@ class CharacterCardWidget extends StatelessWidget {
           SizedBox(
             height: 45,
             width: 45,
-            child: Image.network(
-                'https://4.bp.blogspot.com/-E7ob6PL6-1c/V5uzm8B3duI/AAAAAAAAHns/qZ3G7g33cmcu3iL-exL6lXBCWGL_Xsp5wCLcB/s1600/doctor_strange___transparent_by_asthonx1-d9yl3ke.png'),
+            child: Image.network(character.imageUrl),
           ),
           const SizedBox(width: 12),
           Text(character.name),

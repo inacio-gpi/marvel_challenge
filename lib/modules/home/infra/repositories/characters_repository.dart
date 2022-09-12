@@ -17,8 +17,9 @@ class CharactersRepository extends ICharactersRepository {
     try {
       final List<CharacterModel> characters =
           await _charactersDataSource.getAllCharacters();
-
-      return right(characters.map((e) => e.toEntity()).toList());
+      final List<CharacterEntity> charactersEntity =
+          characters.map((e) => e.toEntity()).toList();
+      return right(charactersEntity);
     } on Failure catch (e) {
       return left(e);
     }
