@@ -3,14 +3,14 @@ import 'package:dio/dio.dart';
 import '../constants/api_routes.dart';
 import '../encrypto/encrypto.dart';
 import 'http_interface.dart';
+import 'http_logger_interceptor.dart';
 
 class HttpClient implements IHttpClient {
   final Dio _client;
 
   HttpClient(this._client) {
     _client.options.baseUrl = ApiRoutes.baseUrl;
-    _client.options.responseType = ResponseType.json;
-    _client.options.contentType = Headers.jsonContentType;
+    _client.interceptors.add(HttpLoggerInterceptor());
   }
   Map<String, dynamic> _getParams(Map? params) {
     String ts = DateTime.now().millisecondsSinceEpoch.toString();
@@ -19,7 +19,7 @@ class HttpClient implements IHttpClient {
     final queryParams = params?.cast<String, String>() ?? {}
       ..addAll({
         'ts': ts,
-        'apiKey': apiKey,
+        'apikey': apiKey,
         'hash': generateMd5(ts + privateApiKey + apiKey),
       });
 
@@ -37,7 +37,7 @@ class HttpClient implements IHttpClient {
         path,
         queryParameters: _getParams(queryParameters),
       );
-      return response.data;
+      return response;
     } on DioError catch (error) {
       throw error.message;
     }

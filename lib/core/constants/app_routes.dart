@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../../modules/home/home_binding.dart';
+import '../../modules/home/presenter/controllers/home_controller.dart';
 import '../../modules/home/presenter/pages/home_page.dart';
 
 class Routes {
@@ -10,7 +12,10 @@ class Pages {
   static final pages = [
     GetPage(
       name: Routes.home,
-      page: () => const HomePage(),
+      page: () => HomePage(
+        controller: Get.find<HomeController>(),
+      ),
+      binding: HomeBinding(),
     ),
   ];
 }

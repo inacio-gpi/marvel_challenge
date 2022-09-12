@@ -15,7 +15,8 @@ class CharactersDataSource extends ICharactersDataSource {
     );
 
     if (response.statusCode == 200) {
-      return response.data;
+      final result = response.data['data']['results'] as List;
+      return result.map((e) => CharacterModel.fromMap(e)).toList();
     } else {
       throw response.data;
     }
