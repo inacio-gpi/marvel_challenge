@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import '../../../../core/constants/strings.dart';
 import '../../domain/entities/character_entity.dart';
+import 'character_thumbnail_model.dart';
 
 class CharacterModel {
   final int? id;
@@ -32,7 +33,7 @@ class CharacterModel {
       'id': id,
       'name': name,
       'description': description,
-      'thumbnail': thumbnail,
+      'thumbnail': thumbnail?.toMap(),
     };
   }
 
@@ -49,27 +50,4 @@ class CharacterModel {
 
   factory CharacterModel.fromJson(String source) =>
       CharacterModel.fromMap(json.decode(source) as Map<String, dynamic>);
-}
-
-class CharacterThumbnailModel {
-  final String? path;
-  final String? extensionThumbnail;
-  CharacterThumbnailModel({
-    this.path,
-    this.extensionThumbnail,
-  });
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'path': path,
-      'extension': extensionThumbnail,
-    };
-  }
-
-  factory CharacterThumbnailModel.fromMap(Map<String, dynamic> map) {
-    return CharacterThumbnailModel(
-      path: map['path'],
-      extensionThumbnail: map['extension'],
-    );
-  }
 }

@@ -22,7 +22,7 @@ class HttpClient implements IHttpClient {
         'apikey': apiKey,
         'hash': generateMd5(ts + privateApiKey + apiKey),
       });
-    queryParams.removeWhere((key, value) => value == null);
+    queryParams.removeWhere((key, value) => (value == null || value == ''));
 
     return queryParams;
   }
