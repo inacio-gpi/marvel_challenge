@@ -6,12 +6,15 @@ class SearchTextFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final void Function(String)? onChanged;
   final String? hintText;
+  final FocusNode? focusNode;
   const SearchTextFieldWidget({
     Key? key,
     this.controller,
     this.onChanged,
     this.hintText,
+    this.focusNode,
   }) : super(key: key);
+
   static final OutlineInputBorder border = OutlineInputBorder(
     borderRadius: BorderRadius.circular(4),
     borderSide: const BorderSide(
@@ -24,6 +27,7 @@ class SearchTextFieldWidget extends StatelessWidget {
         key: key,
         controller: controller,
         onChanged: onChanged,
+        focusNode: focusNode,
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,

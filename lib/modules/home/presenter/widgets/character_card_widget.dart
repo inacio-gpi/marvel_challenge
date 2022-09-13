@@ -21,6 +21,7 @@ class CharacterCardWidget extends StatelessWidget {
           horizontal: 16,
           vertical: 16,
         ),
+        color: Colors.black,
         child: Material(
           elevation: 10,
           child: Column(
@@ -30,10 +31,10 @@ class CharacterCardWidget extends StatelessWidget {
                 child: Hero(
                   tag: 'character_${character.id}',
                   child: Image.network(
+                    character.imageUrl,
                     alignment: Alignment.center,
                     height: double.infinity,
                     width: double.infinity,
-                    character.imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -43,7 +44,7 @@ class CharacterCardWidget extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   alignment: Alignment.center,
-                  color: const Color(0xFFF0141E),
+                  color: const Color(0xFFB50607),
                   child: Text(
                     character.name,
                     textAlign: TextAlign.center,
